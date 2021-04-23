@@ -11,6 +11,8 @@ class Subscription extends Model
 
     protected $fillable = ['topic_id', 'url'];
 
+    protected $hidden = ['updated_at', 'created_at'];
+
     public function topic()
     {
         $this->belongsTo(Topic::class, 'topic_id', 'id');

@@ -11,6 +11,8 @@ class Topic extends Model
 
     protected $fillable = ['name'];
 
+    protected $hidden = ['updated_at', 'created_at'];
+
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'topic_id', 'id');

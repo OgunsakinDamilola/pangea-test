@@ -11,6 +11,8 @@ class Message extends Model
 
     protected $fillable = ['topic_id', 'message'];
 
+    protected $hidden = ['updated_at', 'created_at'];
+
     public function topic()
     {
         return $this->belongsTo(Topic::class, 'topic_id', 'id');

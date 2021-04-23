@@ -8,7 +8,7 @@ use App\Models\Topic;
 
 trait TopicHandler
 {
-    public function createTopic($name)
+    public function createTopicWithName($name)
     {
         return Topic::create([
             'name' => $name
@@ -17,6 +17,11 @@ trait TopicHandler
 
     public function getAllTopics()
     {
-        return Topic::orderBy('name, desc')->pluck('name')->get();
+        return Topic::orderBy('name', 'desc')->get()->pluck('name');
+    }
+
+    public function getTopicWithName($name)
+    {
+        return Topic::where('name', $name)->first();
     }
 }

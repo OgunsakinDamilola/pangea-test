@@ -18,15 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'subscriptions'], function(){
-    Route::post('create', [App\Http\Controllers\SubscriptionController::class, 'create']);
-});
-
-Route::group(['prefix' => 'messages'], function(){
-    Route::post('publish', [App\Http\Controllers\MessageController::class, 'publish']);
-});
-
 Route::group(['prefix' => 'topics'], function(){
-    Route::post('', [App\Http\Controllers\TopicController::class, 'index']);
+    Route::get('', [App\Http\Controllers\TopicController::class, 'index']);
     Route::post('create', [App\Http\Controllers\TopicController::class, 'create']);
 });
+Route::post('subscribe/{topicName}', [App\Http\Controllers\SubscriptionController::class, 'create']);
+Route::post('publish/{topicName}', [App\Http\Controllers\MessageController::class, 'publish']);

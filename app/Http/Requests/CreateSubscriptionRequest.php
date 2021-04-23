@@ -21,7 +21,7 @@ class CreateSubscriptionRequest extends CustomFormRequest
     public function rules()
     {
         return [
-            'url' => ['required', 'string']
+            'url' => ['required', 'url']
         ];
     }
 }
