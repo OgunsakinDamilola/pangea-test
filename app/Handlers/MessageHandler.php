@@ -4,21 +4,19 @@
 namespace App\Handlers;
 
 
+use App\Jobs\PublishMessageToSubscriber;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Http;
+
 trait MessageHandler
 {
-    private function handleHttpRequest()
+    public function publishMessageToSubscribers($subscribers, $data)
     {
-
-    }
-
-    private function saveMessage()
-    {
-
-    }
-
-    public function publishMessageToSubscribers($message)
-    {
-
+        foreach ($subscribers as $subscriber) {
+            PublishMessageToSubscriber::dispatch($subscriber->url, $data);
+        }
+        return true;
     }
 
 }
